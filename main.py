@@ -28,28 +28,24 @@ def getCovidCases():
   covidData=covidData.json()
   covidDate=str(input("Give me a date from 1/22/20 to 3/9/23, and I will give you the amount of cases, deaths, or recoveries(NOTE: For recoveries, anything after 8/4/21 is 0, just a heads up)."))
 
+  #Check for invalid input, making use of fewer lines.
+  if covidDate not in covidData["cases"].keys():
+    print("Invalid Input, try again!")
+    exit()
   #Choice for cases, deaths, and recoveries
   choice=input("What do you want, cases, deaths, or recoveries?(c, d, or r)")
 
   if choice.lower()=='c':  
     #Cases
-    if covidDate in covidData["cases"].keys():
-      print("The number of cases during " + str(covidDate) + " was " + str(covidData["cases"][covidDate]) +".")
-    else:
-      print("Invalid Input.")
+    print("The number of cases during " + str(covidDate) + " was " + str(covidData["cases"][covidDate]) +".")
   elif choice.lower()=='d':
     #Deaths
-    if covidDate in covidData["deaths"].keys():
       print("The number of deaths during " + str(covidDate) + " was " + str(covidData["deaths"][covidDate]) +".")
-    else:
-      print("Invalid Input.")
   elif choice.lower()=='r':
     #Recoveries
-    if covidDate in covidData["recovered"].keys():
       print("The number of recoveries during " + str(covidDate) + " was " + str(covidData["recovered"][covidDate]) +".")
-    else:
-      print("Invalid Input.")
   else:
-    print("Invalid Input, sorry, try again!")
+    print("Invalid Input, try again!")
+    exit()
 
 getCovidCases()
